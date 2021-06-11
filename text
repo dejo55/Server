@@ -1,0 +1,53 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+
+
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://dejo55:NTM1234loveme5//1*2.2@cluster0.b6vfu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UnhandledPromiseRejectionWarning: ReferenceError: error is not defined
+    at D:\H.N.H\Msql\server.js:32:68
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:20336) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+(node:20336) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will termin
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/quotes", (req, res) => {
+  console.log("I am a quote");
+  var { name, quote } = req.body;
+  console.log(name, quote);
+});
+
+app.listen(3000, function(){
+    console.log("listen on 3000");
+});
